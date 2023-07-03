@@ -63,11 +63,11 @@ class Rectangle:
         if (self.__width == 0) or (self.__height == 0):
             return("")
         else:
-            rect = ""
+            rect = []
             for i in range(self.__height - 1):
-                rect += str(Rectangle.print_symbol) * self.width + "\n"
-            rect += str(Rectangle.print_symbol) * self.width
-            return rect
+                rect.append(str(Rectangle.print_symbol) * self.width + "\n")
+            rect.append(str(Rectangle.print_symbol) * self.width)
+            return ("".join(rect))
     
     def __repr__(self) -> str:
         """Returns a string representation of the rectangle that can be used to
