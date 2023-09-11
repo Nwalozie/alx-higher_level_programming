@@ -6,15 +6,15 @@ const size = parseInt(args[0]);
 if (!isNaN(size)) {
   if (size > 0) {
     for (let i = 0; i < size; i++) {
-      let row = "";
+      let row = '';
       for (let j = 0; j < size; j++) {
-        row += "X";
+        row += 'X';
       }
       console.log(row);
     }
   } else {
-    console.log("Size must be a positive integer.");
+    console.log('Size must be a positive integer.');
   }
 } else {
-  console.log("Missing size");
+  console.log('Missing size');
 }
