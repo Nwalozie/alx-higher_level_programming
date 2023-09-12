@@ -1,9 +1,6 @@
-exports.converter = function (base) {
-  return function convertToBase (number) {
-    if (number < base) {
-      return number.toString(base);
-    } else {
-      return convertToBase(Math.floor(number / base)) + (number % base).toString(base);
-    }
-  };
-};
+#!/usr/bin/node
+function factorial (n) {
+  return n === 0 || isNaN(n) ? 1 : n * factorial(n - 1);
+}
+
+console.log(factorial(Number(process.argv[2])));
