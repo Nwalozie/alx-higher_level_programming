@@ -1,20 +1,17 @@
 #!/usr/bin/node
+const x = process.argv[2];
 
-const args = process.argv.slice(2);
-const size = parseInt(args[0]);
-
-if (!isNaN(size)) {
-  if (size > 0) {
-    for (let i = 0; i < size; i++) {
-      let row = '';
-      for (let j = 0; j < size; j++) {
-        row += 'X';
-      }
-      console.log(row);
-    }
-  } else {
-    console.log('Size must be a positive integer.');
-  }
-} else {
+if (!parseInt(x)) {
   console.log('Missing size');
+} else {
+  for (let i = 0; i < x; i++) {
+    let y = 0;
+    let myVar = '';
+
+    while (y < x) {
+      myVar = myVar + 'X';
+      y++;
+    }
+    console.log(myVar);
+  }
 }
