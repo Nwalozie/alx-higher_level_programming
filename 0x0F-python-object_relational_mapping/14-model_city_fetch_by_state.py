@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 """
-This script prints the first State object
-from the database `hbtn_0e_6_usa`.
+This script prints all City objects
+from the database `hbtn_0e_14_usa`.
 """
 
 from sys import argv
 from model_state import State, Base
+from model_city import City
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
     """
-    Access to the database and get a state
+    Access to the database and get the cities
     from the database.
     """
 
@@ -23,8 +24,10 @@ if __name__ == "__main__":
 
     session = Session()
 
-    state = session.query(State).order_by(State.id).first()
-    if state is not None:
-        print('{0}: {1}'.format(state.id, state.name))
-    else:
-        print("Nothing")
+    results = session.query(City, State).join(State)
+
+    for city, state in results.all():
+        print("{}: ({}) {}".format(state.name, city.id, city.name))
+
+    session.commit()
+    session.close()

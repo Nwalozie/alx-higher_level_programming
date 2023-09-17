@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This script prints the first State object
+This script deletes all State objects
+with a name containing the letter `a`
 from the database `hbtn_0e_6_usa`.
 """
 
@@ -11,8 +12,7 @@ from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
     """
-    Access to the database and get a state
-    from the database.
+    Deletes State objects on the database.
     """
 
     db_url = "mysql+mysqldb://{}:{}@localhost:3306/{}".format(
@@ -23,8 +23,11 @@ if __name__ == "__main__":
 
     session = Session()
 
-    state = session.query(State).order_by(State.id).first()
-    if state is not None:
-        print('{0}: {1}'.format(state.id, state.name))
-    else:
-        print("Nothing")
+    states = session.query(State).filter(State.name.contains('a'))
+    if states is not None:
+        for state in states:
+            session.delete(state)
+
+    session.commit()
+
+    session.close()
