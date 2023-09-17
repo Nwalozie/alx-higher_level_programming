@@ -1,15 +1,20 @@
 #!/usr/bin/python3
-
+'''
+Write a script that lists all states from the database
+'''
 import MySQLdb
 import sys
 
+
 def list_states(username, password, database_name):
 
-    db = MySQLdb.connect(host="localhost", 
-	port=3306,
-	user=username,
-	passwd=password,
-	db=database_name)
+    db = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=username,
+            passwd=password,
+            db=database_name
+            )
 
     cursor = db.cursor()
 
@@ -23,9 +28,12 @@ def list_states(username, password, database_name):
     cursor.close()
     db.close()
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: python script.py <username> <password> <database_name>")
     else:
-        username, password, database_name = sys.argv[1], sys.argv[2], sys.argv[3]
+        username = sys.argv[1]
+        password = sys.argv[2]
+        database_name = sys.argv[3]
         list_states(username, password, database_name)
