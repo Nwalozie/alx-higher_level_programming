@@ -1,30 +1,37 @@
 #!/usr/bin/python3
-"""
-This script lists all State objects
-that contain the letter `a`
-from the database `hbtn_0e_6_usa`.
-"""
+'''
+Script that prints the first state from the database
+'''
 
-from sys import argv
-from model_state import State, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+import sys
 
-if __name__ == "__main__":
-    """
-    Access to the database and get a state
-    from the database.
-    """
 
-    db_url = "mysql+mysqldb://{}:{}@localhost:3306/{}".format(
-        argv[1], argv[2], argv[3])
+def print_first_state(username, password, database_name):
+    engine = create_engine(f'mysql://{username}:\
+            {password}@localhost:3306/{database_name}')
 
-    engine = create_engine(db_url)
     Session = sessionmaker(bind=engine)
 
     session = Session()
 
-    states = session.query(State).filter(State.name.contains('a'))
-    if states is not None:
-        for state in states:
-            print('{0}: {1}'.format(state.id, state.name))
+    state_query = session.query(State).filter(State.name.like('%a%'))
+
+    first_state = state_query.order_by(State.id).all()
+
+    for state in first_state:
+        print(f"{state.id}: {state.name}")
+
+    session.close()
+
+
+if __name__ == "__main__":
+    from model_state import Base, State
+
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database_name = sys.argv[3]
+
+    print_first_state(username, password, database_name)
