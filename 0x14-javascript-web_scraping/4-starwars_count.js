@@ -10,7 +10,7 @@ const apiUrl = process.argv[2];
 
 request(apiUrl, (error, response, body) => {
   if (error) {
-    console.error(error);
+    console.log(error);
   } else if (response.statusCode !== 200) {
     console.error(`Request failed with status code: ${response.statusCode}`);
   } else {
@@ -21,7 +21,7 @@ request(apiUrl, (error, response, body) => {
       );
       console.log(`${wedgeAntillesFilms.length}`);
     } catch (parseError) {
-      console.error(parseError);
+      console.log(parseError);
     }
   }
 });
