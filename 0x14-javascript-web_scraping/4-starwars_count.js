@@ -3,7 +3,6 @@
 const request = require('request');
 
 if (process.argv.length < 3) {
-  console.error('Usage: node countMovies.js <API_URL>');
   process.exit(1);
 }
 
@@ -20,7 +19,6 @@ request(apiUrl, (error, response, body) => {
       const wedgeAntillesFilms = filmsData.results.filter(film =>
         film.characters.includes('https://swapi-api.alx-tools.com/api/people/18/')
       );
-
       console.log(`${wedgeAntillesFilms.length}`);
     } catch (parseError) {
       console.error(parseError);
