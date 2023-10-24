@@ -9,9 +9,9 @@ if (process.argv.length < 3) {
 }
 
 fs.readFile(filepath, 'utf-8', (err, data) => {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(data);
-	}
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(data);
+  }
 });
