@@ -11,8 +11,6 @@ const apiUrl = process.argv[2];
 request(apiUrl, (error, response, body) => {
   if (error) {
     console.log(error);
-  } else if (response.statusCode !== 200) {
-    console.error(`Request failed with status code: ${response.statusCode}`);
   } else {
     try {
       const filmsData = JSON.parse(body);
